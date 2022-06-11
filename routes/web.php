@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::middleware(['auth','admin'])->name('admin.')->group(function(){
+Route::middleware(['auth','admin'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('/',[AdminController::class, 'index'])->name('index');
 });
 
