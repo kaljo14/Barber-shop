@@ -1,6 +1,9 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ReservationController;
+use App\Http\Controllers\Admin\BarberController;
+use App\Http\Controllers\Admin\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +26,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth','admin'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('/',[AdminController::class, 'index'])->name('index');
+    Route::resource('/categories',CategoriesController::class);
+    Route::resource('/barber',BarberController::class);
+    Route::resource('/reservation',ReservationController::class);
 });
 
 require __DIR__.'/auth.php';
