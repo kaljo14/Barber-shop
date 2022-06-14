@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Requests\CategoryStoreRequest;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriesController extends Controller
 {
@@ -39,18 +40,18 @@ class CategoriesController extends Controller
     public function store(CategoryStoreRequest $request)
     {
         
-            $newImageName = time() . '-'.$request->name . '.' .$request->image->extension();
+            //$newImageName = time() . '-'.$request->name . '.' .$request->image->extension();
             
-            $request->image->move(public_path('categories'),$newImageName);
+            //$request->image->move(public_path('categories'),$newImageName);
 
 
 
 
-        //$image=$request->file('image')->store('public/categories');
+        $image=$request->file('image')->store('public/categories');
         Category::create([
             'name'=> $request->name,
             'description'=> $request->description,
-            'image'=>$newImageName,
+            'image'=>$image,
             'price'=>$request->price
         ]);
         return to_route('admin.categories.index');
@@ -73,7 +74,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
         return view('admin.categories.edit',compact('category'));
     }
@@ -85,9 +86,17 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required'
+        ]);
+        $image= $category->image;
+        if ($request->hasFile('image')){
+
+        }
+
     }
 
     /**

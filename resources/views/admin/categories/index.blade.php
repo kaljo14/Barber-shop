@@ -40,10 +40,10 @@
                             {{ $category->name }}
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $category->description }}
+                            {{ $category->image }}
                             </td>
                              <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            <img src="{{ asset('categories/'.$category->image)}}" class="2-16 h-16 rounded">
+                            <img src="{{ Storage::url($category->image) }}"class="2-16 h-16 rounded">
                                 
                             </td>
                              <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
