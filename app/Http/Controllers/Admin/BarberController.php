@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Barbar;
+use App\Models\Barber;
 
 class BarberController extends Controller
 {
@@ -16,7 +16,7 @@ class BarberController extends Controller
     public function index()
     {
         $barber=Barber::all();
-        return view('admin.barber.index');
+        return view('admin.barber.index',compact('barber'));
     }
 
     /**
@@ -26,7 +26,7 @@ class BarberController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.barber.create');
     }
 
     /**
