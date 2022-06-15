@@ -33,9 +33,9 @@
                             </div>
                         </div>
                         <div class="sm:col-snap-6">
-                            <label for="phone" class="block text-sm font-midium text-gray-600">Phone Number</label>
+                            <label for="phone_number" class="block text-sm font-midium text-gray-600">Phone Number</label>
                             <div class="mt-1">
-                                <input type="text" name="phone" id="phone" class="block w-full focus:ring-indigo-400 ">
+                                <input type="text" name="phone_number" id="phone_number" class="block w-full focus:ring-indigo-400 ">
                             </div>
                         </div>
                         <div class="sm:col-snap-6">
