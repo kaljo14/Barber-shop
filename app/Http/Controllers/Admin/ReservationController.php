@@ -78,23 +78,7 @@ class ReservationController extends Controller
      */
     public function update(Request $request,Reservation $reservation)
     {
-       $request->validate([
-            'firs_name'=>'required',
-            'last_name'=>'required',
-        
-        ]);
-        
-
-        $reservation->update(
-            [
-                'firs_name'=> $request->name,
-                'last_name'=> $request->name,
-                'emial'=> $request->emial,
-                'phone_number'=>$request->phone_number,
-                'reserv_date'=>$request->reser_date,
-                'barber_id'=>$request->barber_id,
-            ]
-            );
+       
             return to_route('admin.reservation.index');
     }
 

@@ -18,8 +18,11 @@
                         <div class="sm:col-snap-6">
                             <label for="name" class="block text-sm font-midium text-gray-600">Name</label>
                             <div class="mt-1">
-                                <input type="text" name="name" id="name" value="{{ $category->name }}" class="block w-full focus:ring-indigo-400 ">
+                                <input type="text" name="name" id="name" value="{{ $category->name }}" class="block w-full focus:ring-indigo-400 @error ('name') border-red-500 @enderror">
                             </div>
+                             @error('name')
+                            <div class="test-sm text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class=" sm:col-snap-6">
                             <label for="image" class="block text-sm font-midium text-gray-600 ">Image</label>
@@ -41,8 +44,11 @@
                         <div class="sm:col-snap-6">
                             <label for="price" class="block text-sm font-midium text-gray-600">Price</label>
                             <div class="mt-1">
-                                <input type="number" name="price" id="price"  value="{{ $category->price }}" class="block w-full focus:ring-indigo-400 ">
+                                <input type="number" name="price" id="price"  value="{{ $category->price }}" class="block w-full focus:ring-indigo-400 @error ('price') border-red-500 @enderror ">
                             </div>
+                            @error('price')
+                            <div class="test-sm text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mt-2 p-2  ">
                         <button type="submit" class="px-3 py-1 bg-indigo-400 hover:bg-indigo-600 rounded-lg text-white">Update</button>

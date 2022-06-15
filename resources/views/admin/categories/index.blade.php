@@ -36,19 +36,19 @@
                             
                         
                        <tr class="bg-white border-b ">
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900  ">
                             {{ $category->name }}
                             </td>
                             <div>
-                            <td  class="px-6 py-4 font-medium   text-gray-900  whitespace-nowrap">
+                            <td  class="px-6 py-4 font-medium   text-gray-900  ">
                             {{ $category->description }}
                             </td>
                             </div>
-                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
+                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  ">
                             <img src="{{ Storage::url($category->image) }}"class="2-16 h-16 rounded">
                                 
                             </td>
-                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
+                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  ">
                             {{ $category->price . " BGN"}} 
                             </td>
                             <td class="px-6 py-4 text-right">
