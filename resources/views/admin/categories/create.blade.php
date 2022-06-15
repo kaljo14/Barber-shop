@@ -36,7 +36,7 @@
                         <div class="sm:col-snap-6">
                             <label for="description" class="block text-sm font-midium text-gray-600 ">Description</label>
                             <div class="mt-1">
-                                <textarea id="description" name="description" rows="3" class=" w-full shadow-sm focus:ring-indigo-400  @error('name') border-red-500 @enderror"></textarea>
+                                <textarea id="description" name="description" rows="3" class=" w-full shadow-sm focus:ring-indigo-400  @error('description') border-red-500 @enderror"></textarea>
                             </div>
                             @error('description')
                             <div class="test-sm text-red-500">{{ $message }}</div>
@@ -45,7 +45,7 @@
                         <div class="sm:col-snap-6">
                             <label for="price" class="block text-sm font-midium text-gray-600">Price</label>
                             <div class="mt-1">
-                                <input type="number" name="price" id="price" class="block w-full focus:ring-indigo-400 @error('price') border-red-500 @enderror">
+                                <input type="number" name="price" step="0.01" min="0" max="2000" id="price" class="block w-full focus:ring-indigo-400 @error('price') border-red-500 @enderror">
                             </div>
                             @error('price')
                             <div class="test-sm text-red-500">{{ $message }}</div>

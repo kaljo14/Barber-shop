@@ -26,7 +26,7 @@ class CategoryStoreRequest extends FormRequest
         return [
            'image' => ['required', 'image'],
             'name'=>'required|unique:categories',
-            'price'=>'required|integer|min:0|max:2000',
+            'price'=>'required|min:0|max:2000',
             'description'=>'required'
         ];
     }

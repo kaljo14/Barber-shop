@@ -90,7 +90,7 @@ class CategoriesController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'description'=>'required'
+            'description'=>'required',
         ]);
         $image= $category->image;
         if ($request->hasFile('image')){

@@ -17,15 +17,21 @@
                         <div class="sm:col-snap-6">
                             <label for="name" class="block text-sm font-midium text-gray-600">Name</label>
                             <div class="mt-1">
-                                <input type="text" id="name" name="name" class="block w-full focus:ring-indigo-400 ">
+                                <input type="text" id="name" name="name" class="block w-full focus:ring-indigo-400 @error ('name') border-red-500 @enderror">
                             </div>
+                             @error('name')
+                            <div class="test-sm text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                       
                         <div class="sm:col-snap-6">
                             <label for="description" class="block text-sm font-midium text-gray-600 ">Description</label>
                             <div class="mt-1">
-                                <textarea id="description"  name="description" rows="3" class=" w-full shadow-sm focus:ring-indigo-400 "></textarea>
+                                <textarea id="description"  name="description" rows="3" class=" w-full shadow-sm focus:ring-indigo-400 @error ('description') border-red-500 @enderror"></textarea>
                             </div>
+                             @error('description')
+                            <div class="test-sm text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                        <div class="sm:col-span-6 pt-5">
                             <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
@@ -36,7 +42,9 @@
                                     @endforeach
                                 </select>
                             </div>
-
+                             @error('status')
+                            <div class="test-sm text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mt-2 p-2  ">
                         <button type="submit" class="px-3 py-1 bg-indigo-400 hover:bg-indigo-600 rounded-lg text-white">Submit</button>

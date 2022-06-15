@@ -18,22 +18,28 @@
                         <div class="sm:col-snap-6">
                             <label for="name" class="block text-sm font-midium text-gray-600">Name</label>
                             <div class="mt-1">
-                                <input type="text" name="name" id="name" value="{{ $barber->name }}" class="block w-full focus:ring-indigo-400 ">
+                                <input type="text" name="name" id="name" value="{{ $barber->name }}" class="block w-full focus:ring-indigo-400 @error ('name') border-red-500 @enderror">
                             </div>
+                            @error('name')
+                                <div class="test-sm text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                         
                         <div class="sm:col-snap-6">
                             <label for="description" class="block text-sm font-midium text-gray-600 ">Description</label>
                             <div class="mt-1">
-                                <textarea id="description" name="description" rows="3" class=" w-full shadow-sm focus:ring-indigo-400 ">
+                                <textarea id="description" name="description" rows="3" class=" w-full shadow-sm focus:ring-indigo-400 @error ('description') border-red-500 @enderror">
                                     {{ $barber->description }}
                                 </textarea>
                             </div>
+                            @error('description')
+                                <div class="test-sm text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                        <div class="sm:col-span-6 pt-5">
                             <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                             <div class="mt-1">
-                                <select id="status" name="status" class="form-multiselect block w-full mt-1">
+                                <select id="status" name="status" class="form-multiselect block w-full mt-1 @error ('status') border-red-500 @enderror">
                                     @foreach (App\Enums\BarberStatus::cases() as $status)
                                         <option value="{{ $status->value }}" @selected($barber->status->value == $status->value)>{{ $status->name }}</option>
                                     @endforeach
