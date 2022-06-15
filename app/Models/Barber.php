@@ -4,8 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\BarberStatus;
 
 class Barber extends Model
 {
     use HasFactory;
+    protected $fillable =['name','status','description'];
+    protected $casts =[
+        'status'=> BarberStatus::class
+    ];
 }

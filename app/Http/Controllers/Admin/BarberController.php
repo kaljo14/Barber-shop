@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Barber;
+use App\Http\Requests\BarberRequest;
 
 class BarberController extends Controller
 {
@@ -35,9 +36,14 @@ class BarberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BarberRequest $request)
     {
-        //
+        Barber::create([
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'status'=>$request->status,
+        ]);
+        return to_route ('admin.barber.index');
     }
 
     /**
@@ -57,9 +63,9 @@ class BarberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Barber $barber)
     {
-        //
+         return view('admin.barber.edit',compact('barber'));
     }
 
     /**
@@ -69,9 +75,22 @@ class BarberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Barber $barber)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            
+        ]);
+        
+
+        $barber->update(
+            [
+                'name'=> $request->name,
+                'description'=> $request->description,
+                'status'=>$request->status
+            ]
+            );
+            return to_route('admin.barber.index');
     }
 
     /**
@@ -80,8 +99,10 @@ class BarberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Barber $barber)
     {
-        //
+
+        $barber->delete();
+        return to_route('admin.barber.index');
     }
 }

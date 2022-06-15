@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use App\Models\Barber;
 
 class ReservationController extends Controller
 {
@@ -26,7 +27,8 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('admin.reservation.create');
+        $barber = Barber::all();
+        return view('admin.reservation.create',compact('barber'));
     }
 
     /**

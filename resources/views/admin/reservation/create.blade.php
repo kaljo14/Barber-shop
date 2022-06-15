@@ -8,29 +8,52 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
            <div class="flex justify-end m-2 p-2">
-                <a href="{{ route('admin.categories.index') }}" class="px-4 py-2 bg-indigo-400 hover:bg-indigo-600 rounded-lg text-white ">Services</a>
+                <a href="{{ route('admin.reservation.index') }}" class="px-4 py-2 bg-indigo-400 hover:bg-indigo-600 rounded-lg text-white ">Reservation List</a>
             </div>
             <div class="m-2 p-2 bg-slate-100 rounded">
                 <div class="space-y-8 divide-y divide-gray-200 w-1/2 mt-10">
-                    <form enctype="multipart/form-data">
+                    <form  method="POST" action="{{ route('admin.reservation.store') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="sm:col-snap-6">
-                            <label for="name" class="block text-sm font-midium text-gray-600">Name</label>
+                            <label for="first_name" class="block text-sm font-midium text-gray-600">First Name</label>
                             <div class="mt-1">
-                                <input type="text" id="name" class="block w-full focus:ring-indigo-400 ">
-                            </div>
-                        </div>
-                        <div class=" sm:col-snap-6">
-                            <label for="image" class="block text-sm font-midium text-gray-600 ">Image</label>
-                            <div class="mt-1">
-                                <input type="file" id="image" class="block w-full  focus:ring-indigo-400">
+                                <input type="text" name="first_name" id="first_name" class="block w-full focus:ring-indigo-400 ">
                             </div>
                         </div>
                         <div class="sm:col-snap-6">
-                            <label for="body" class="block text-sm font-midium text-gray-600 ">Description</label>
+                            <label for="last_name" class="block text-sm font-midium text-gray-600">Last Name</label>
                             <div class="mt-1">
-                                <textarea id="body" rows="3" class=" w-full shadow-sm focus:ring-indigo-400 "></textarea>
+                                <input type="text" name="last_name" id="last_name" class="block w-full focus:ring-indigo-400 ">
                             </div>
                         </div>
+                        <div class="sm:col-snap-6">
+                            <label for="email" class="block text-sm font-midium text-gray-600">Email</label>
+                            <div class="mt-1">
+                                <input type="email" name="email" id="email" class="block w-full focus:ring-indigo-400 ">
+                            </div>
+                        </div>
+                        <div class="sm:col-snap-6">
+                            <label for="phone" class="block text-sm font-midium text-gray-600">Phone Number</label>
+                            <div class="mt-1">
+                                <input type="text" name="phone" id="phone" class="block w-full focus:ring-indigo-400 ">
+                            </div>
+                        </div>
+                        <div class="sm:col-snap-6">
+                            <label for="reser_date" class="block text-sm font-midium text-gray-600">Reservation Date</label>
+                            <div class="mt-1">
+                                <input type="datetime-local" name="reser_date" id="reser_date" class="block w-full focus:ring-indigo-400 ">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-6 pt-5">
+                            <label for="barber_id" class="block text-sm font-medium text-gray-700">Select Barber</label>
+                            <div class="mt-1">
+                                <select id="barber_id" name="barber_id" class="form-multiselect block w-full mt-1">
+                                    @foreach ($barber as $emp)
+                                        <option value="{{ $emp->id }}" >{{ $emp->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        
                         <div class="mt-2 p-2  ">
                         <button type="submit" class="px-3 py-1 bg-indigo-400 hover:bg-indigo-600 rounded-lg text-white">Submit</button>
                         </div>
