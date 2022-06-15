@@ -18,8 +18,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        $barber = Barber::all();
         $reservation= Reservation::all();
-         return view('admin.reservation.index',compact('reservation'));
+         return view('admin.reservation.index',compact('reservation','barber'));
     }
 
     /**
@@ -62,9 +63,10 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Reservation $reservation)
     {
-        //
+        $barber=Barber::all();
+         return view('admin.reservation.edit',compact('reservation','barber'));
     }
 
     /**
@@ -74,9 +76,26 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Reservation $reservation)
     {
-        //
+       $request->validate([
+            'firs_name'=>'required',
+            'last_name'=>'required',
+        
+        ]);
+        
+
+        $reservation->update(
+            [
+                'firs_name'=> $request->name,
+                'last_name'=> $request->name,
+                'emial'=> $request->emial,
+                'phone_number'=>$request->phone_number,
+                'reserv_date'=>$request->reser_date,
+                'barber_id'=>$request->barber_id,
+            ]
+            );
+            return to_route('admin.reservation.index');
     }
 
     /**
@@ -85,8 +104,9 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reservation $reservation)
     {
-        //
+            $reservation->delete();
+        return to_route('admin.reservation.index');
     }
 }
