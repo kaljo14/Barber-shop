@@ -11,7 +11,7 @@
                 <a href="{{ route('admin.categories.create') }}" class="px-4 py-2 bg-indigo-400 hover:bg-indigo-600 rounded-lg text-white ">New Service</a>
             </div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 ">
+                <table class="  w-full text-sm text-left text-gray-500 ">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -39,9 +39,11 @@
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                             {{ $category->name }}
                             </td>
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $category->image }}
+                            <div>
+                            <td  class="px-6 py-4 font-medium   text-gray-900  whitespace-nowrap">
+                            {{ $category->description }}
                             </td>
+                            </div>
                              <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                             <img src="{{ Storage::url($category->image) }}"class="2-16 h-16 rounded">
                                 

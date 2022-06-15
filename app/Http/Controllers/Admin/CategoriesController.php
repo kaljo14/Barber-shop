@@ -94,9 +94,19 @@ class CategoriesController extends Controller
         ]);
         $image= $category->image;
         if ($request->hasFile('image')){
-
+            Storage::delete([$category->image]);
+            $image = $request->file('image')->store('public/categories');
         }
 
+        $category->update(
+            [
+                'name'=> $request->name,
+                'description'=> $request->description,
+                'image'=>$image,
+                'price'=>$request->price
+            ]
+            );
+            return to_route('admin.categories.index');
     }
 
     /**
@@ -105,8 +115,10 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        Storage::delete($category->image);
+        $category->delete();
+        return to_route('admin.categories.index');
     }
 }

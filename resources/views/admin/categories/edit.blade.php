@@ -24,7 +24,7 @@
                         <div class=" sm:col-snap-6">
                             <label for="image" class="block text-sm font-midium text-gray-600 ">Image</label>
                             <div>
-                                <img src="{{ asset('categories/'.$category->image)}}"class="w-52 h-42 rounded-lg">
+                                <img src="{{Storage::url($category->image)}}"class="w-52 h-42 rounded-lg">
                             </div>
                             <div class="mt-1">
                                 <input type="file" id="image" name="image" class="block w-full  focus:ring-indigo-400">
