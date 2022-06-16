@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\BarberStatus;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReservationStoreRequest;
 use App\Models\Reservation;
 
 use App\Models\Barber;
+use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -30,7 +32,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        $barber = Barber::all();
+        $barber = Barber::where('status', BarberStatus::Avaliable)->get();
         return view('admin.reservation.create', compact('barber'));
     }
 
@@ -42,6 +44,15 @@ class ReservationController extends Controller
      */
     public function store(ReservationStoreRequest $request)
     {
+        $barber = Barber::findOrFail($request->barber_id);
+        $request_date = Carbon::parse($request->reser_date);
+        foreach ($barber->reservation as $res) {
+            if ($res->reser_date->format('Y-m-d H:m') == $request_date->format('Y-m-d H:m')) {
+                $barber->update(['status' => BarberStatus::Unavaliable]);
+                return back()->with('warning', 'Please select a difrent barber');
+            }
+        };
+
         Reservation::create($request->validated());
         return to_route('admin.reservation.index')->with('success', 'Reservation Created Successfuly');
     }
