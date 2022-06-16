@@ -24,9 +24,9 @@ class BarberRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required|unique:barbers'],
-            'status'=>['required'],
-            'description'=>['required|'],
+            'name' => ['required'],
+            'status' => ['required'],
+            'description' => ['required'],
 
         ];
     }

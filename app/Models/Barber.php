@@ -9,11 +9,12 @@ use App\Enums\BarberStatus;
 class Barber extends Model
 {
     use HasFactory;
-    protected $fillable =['name','status','description'];
-    protected $casts =[
-        'status'=> BarberStatus::class
+    protected $fillable = ['name', 'status', 'description'];
+    protected $casts = [
+        'status' => BarberStatus::class
     ];
-    public function reservation(){
+    public function reservation()
+    {
         return $this->hasMany(Reservation::class);
     }
 }

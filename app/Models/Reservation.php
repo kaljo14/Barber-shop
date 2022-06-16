@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
-    protected $fillable =[
+    protected $table = 'reservations';
+    protected $primaryKay = 'id';
+    protected $fillable = [
         'first_name',
         'last_name',
         'phone_number',
@@ -16,10 +18,11 @@ class Reservation extends Model
         'barber_id',
         'email'
     ];
-    protected $dates =[
+    protected $dates = [
         'reser_date'
     ];
-    public function barber(){
+    public function barber()
+    {
         return $this->belongsTo(Barber::class);
     }
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->dateTime('reser_date');
             $table->unsignedInteger('barber_id');
-            
+
             $table->timestamps();
         });
     }
