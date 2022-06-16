@@ -16,4 +16,10 @@ class Reservation extends Model
         'barber_id',
         'email'
     ];
+    protected $dates =[
+        'reser_date'
+    ];
+    public function barber(){
+        return $this->belongsTo(Barber::class);
+    }
 }

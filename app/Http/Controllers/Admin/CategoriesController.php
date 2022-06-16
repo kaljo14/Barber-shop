@@ -17,8 +17,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories=Category::all();
-         return view('admin.categories.index',compact('categories'));
+        $categories = Category::all();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -39,22 +39,22 @@ class CategoriesController extends Controller
      */
     public function store(CategoryStoreRequest $request)
     {
-        
-            //$newImageName = time() . '-'.$request->name . '.' .$request->image->extension();
-            
-            //$request->image->move(public_path('categories'),$newImageName);
+
+        //$newImageName = time() . '-'.$request->name . '.' .$request->image->extension();
+
+        //$request->image->move(public_path('categories'),$newImageName);
 
 
 
 
-        $image=$request->file('image')->store('public/categories');
+        $image = $request->file('image')->store('public/categories');
         Category::create([
-            'name'=> $request->name,
-            'description'=> $request->description,
-            'image'=>$image,
-            'price'=>$request->price
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $image,
+            'price' => $request->price
         ]);
-        return to_route('admin.categories.index');
+        return to_route('admin.categories.index')->with('success', 'Service created');
     }
 
     /**
@@ -76,7 +76,7 @@ class CategoriesController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit',compact('category'));
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -89,24 +89,24 @@ class CategoriesController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'required',
+            'name' => 'required',
+            'description' => 'required',
         ]);
-        $image= $category->image;
-        if ($request->hasFile('image')){
+        $image = $category->image;
+        if ($request->hasFile('image')) {
             Storage::delete([$category->image]);
             $image = $request->file('image')->store('public/categories');
         }
 
         $category->update(
             [
-                'name'=> $request->name,
-                'description'=> $request->description,
-                'image'=>$image,
-                'price'=>$request->price
+                'name' => $request->name,
+                'description' => $request->description,
+                'image' => $image,
+                'price' => $request->price
             ]
-            );
-            return to_route('admin.categories.index');
+        );
+        return to_route('admin.categories.index')->with('success', 'Service Updated');
     }
 
     /**
@@ -119,6 +119,6 @@ class CategoriesController extends Controller
     {
         Storage::delete($category->image);
         $category->delete();
-        return to_route('admin.categories.index');
+        return to_route('admin.categories.index')->with('danger', 'Service Deleted');
     }
 }

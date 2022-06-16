@@ -61,7 +61,7 @@
                             {{ $res->reser_date}} 
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $res->barber_id}} 
+                            {{ $res->barber->name}} 
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex space-x-2">

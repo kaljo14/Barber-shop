@@ -19,8 +19,8 @@ class ReservationController extends Controller
     public function index()
     {
         $barber = Barber::all();
-        $reservation= Reservation::all();
-         return view('admin.reservation.index',compact('reservation','barber'));
+        $reservation = Reservation::all();
+        return view('admin.reservation.index', compact('reservation', 'barber'));
     }
 
     /**
@@ -31,7 +31,7 @@ class ReservationController extends Controller
     public function create()
     {
         $barber = Barber::all();
-        return view('admin.reservation.create',compact('barber'));
+        return view('admin.reservation.create', compact('barber'));
     }
 
     /**
@@ -43,7 +43,7 @@ class ReservationController extends Controller
     public function store(ReservationStoreRequest $request)
     {
         Reservation::create($request->validated());
-        return to_route('admin.reservation.index');
+        return to_route('admin.reservation.index')->with('success', 'Reservation Created Successfuly');
     }
 
     /**
@@ -65,8 +65,8 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        $barber=Barber::all();
-         return view('admin.reservation.edit',compact('reservation','barber'));
+        $barber = Barber::all();
+        return view('admin.reservation.edit', compact('reservation', 'barber'));
     }
 
     /**
@@ -76,10 +76,10 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Reservation $reservation)
+    public function update(Request $request, Reservation $reservation)
     {
-       
-            return to_route('admin.reservation.index');
+
+        return to_route('admin.reservation.index')->with('success', 'Reservation Updated Successfuly');
     }
 
     /**
@@ -90,7 +90,7 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-            $reservation->delete();
-        return to_route('admin.reservation.index');
+        $reservation->delete();
+        return to_route('admin.reservation.index')->with('danger', 'Reservation Removed');
     }
 }

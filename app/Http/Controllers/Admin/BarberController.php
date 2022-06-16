@@ -16,8 +16,8 @@ class BarberController extends Controller
      */
     public function index()
     {
-        $barber=Barber::all();
-        return view('admin.barber.index',compact('barber'));
+        $barber = Barber::all();
+        return view('admin.barber.index', compact('barber'));
     }
 
     /**
@@ -39,11 +39,11 @@ class BarberController extends Controller
     public function store(BarberRequest $request)
     {
         Barber::create([
-            'name'=>$request->name,
-            'description'=>$request->description,
-            'status'=>$request->status,
+            'name' => $request->name,
+            'description' => $request->description,
+            'status' => $request->status,
         ]);
-        return to_route ('admin.barber.index');
+        return to_route('admin.barber.index')->with('success', 'Barber Created Successfuly');
     }
 
     /**
@@ -65,7 +65,7 @@ class BarberController extends Controller
      */
     public function edit(Barber $barber)
     {
-         return view('admin.barber.edit',compact('barber'));
+        return view('admin.barber.edit', compact('barber'));
     }
 
     /**
@@ -78,19 +78,19 @@ class BarberController extends Controller
     public function update(Request $request, Barber $barber)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=> 'required'
+            'name' => 'required',
+            'description' => 'required'
         ]);
-        
+
 
         $barber->update(
             [
-                'name'=> $request->name,
-                'description'=> $request->description,
-                'status'=>$request->status
+                'name' => $request->name,
+                'description' => $request->description,
+                'status' => $request->status
             ]
-            );
-            return to_route('admin.barber.index');
+        );
+        return to_route('admin.barber.index')->with('success', 'Barber Updated Successfuly');
     }
 
     /**
@@ -103,6 +103,6 @@ class BarberController extends Controller
     {
 
         $barber->delete();
-        return to_route('admin.barber.index');
+        return to_route('admin.barber.index')->with('danger', 'Barber Deleted');
     }
 }
