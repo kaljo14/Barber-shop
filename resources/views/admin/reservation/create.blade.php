@@ -10,7 +10,8 @@
            <div class="flex justify-end m-2 p-2">
                 <a href="{{ route('admin.reservation.index') }}" class="px-4 py-2 bg-indigo-400 hover:bg-indigo-600 rounded-lg text-white ">Reservation List</a>
             </div>
-            <div class="m-2 p-2 bg-slate-100 rounded">
+            <div class=" relative m-2 p-2 bg-slate-100 rounded">
+                
                 <div class="space-y-8 divide-y divide-gray-200 w-1/2 mt-10">
                     <form  method="POST" action="{{ route('admin.reservation.store') }}" enctype="multipart/form-data">
                         @csrf
@@ -65,6 +66,7 @@
                             <div class="mt-1">
                                 <select id="barber_id" name="barber_id" class="form-multiselect block w-full mt-1 @error ('barber_id') border-red-500 @enderror">
                                     @foreach ($barber as $emp)
+                                    
                                         <option value="{{ $emp->id }}" >{{ $emp->name }}</option>
                                     @endforeach
                                 </select>
@@ -77,8 +79,31 @@
                         <button type="submit" class="px-3 py-1 bg-indigo-400 hover:bg-indigo-600 rounded-lg text-white">Submit</button>
                         </div>
                     </form>
+                    
+                            
+                    </div>
 
+                    
+                        @if (isset($request_status))
+                            
+                        
+                        <div class="absolute top-0 right-0  bg-gray-500">
+                           <div class="m-2 p-2 " >
+                                
+                               @foreach ($barber as $emp)
+                                   <p>{{ $emp->name }} has booked hours :</p>
+                                   @foreach ($request_status as $status )
+                                       <p>{{ $status->reser_date }}</p>
+                                   @endforeach
+                               @endforeach
+                               <p>so plees check them before booking</p>
+                           </div>
+
+                        </div>
+                        @endif
+                    
                 </div>
+                
             </div>
 
         </div>

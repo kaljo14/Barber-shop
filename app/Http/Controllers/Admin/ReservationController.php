@@ -10,6 +10,7 @@ use App\Models\Reservation;
 
 use App\Models\Barber;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -32,8 +33,10 @@ class ReservationController extends Controller
      */
     public function create()
     {
+
         $barber = Barber::where('status', BarberStatus::Avaliable)->get();
-        return view('admin.reservation.create', compact('barber'));
+        $request_status = Reservation::where('barber_id', 1)->get('reser_date');
+        return view('admin.reservation.create', compact('barber', 'request_status'));
     }
 
     /**
@@ -46,14 +49,20 @@ class ReservationController extends Controller
     {
         $barber = Barber::findOrFail($request->barber_id);
         $request_date = Carbon::parse($request->reser_date);
+        //$request_status = DB::table('reservations')->where('barber_id', $request->barber_id)->get('reser_date');
+        $request_status = Reservation::where('barber_id', $request->barber_id)->get('reser_date');
+        //$r_status = $request_status->toArray();
+        //dd($request_status);
         foreach ($barber->reservation as $res) {
-            if ($res->reser_date->format('Y-m-d H:m') == $request_date->format('Y-m-d H:m')) {
-                $barber->update(['status' => BarberStatus::Unavaliable]);
-                return back()->with('warning', 'Please select a difrent barber');
+            if ($res->reser_date->format('Y-m-d H') == $request_date->format('Y-m-d H')) {
+
+                return back()
+                    ->with('warning', 'This barber is not avialable at the hours: Please select a difrent barber.');
             }
         };
 
         Reservation::create($request->validated());
+
         return to_route('admin.reservation.index')->with('success', 'Reservation Created Successfuly');
     }
 
