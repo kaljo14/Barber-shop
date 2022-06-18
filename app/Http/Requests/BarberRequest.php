@@ -25,6 +25,8 @@ class BarberRequest extends FormRequest
     {
         return [
             'name' => ['required'],
+            'image' => ['required', 'image'],
+
             'status' => ['required'],
             'description' => ['required'],
 

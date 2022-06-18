@@ -9,7 +9,7 @@ use App\Enums\BarberStatus;
 class Barber extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'status', 'description'];
+    protected $fillable = ['name', 'status', 'description', 'image'];
     protected $casts = [
         'status' => BarberStatus::class
     ];

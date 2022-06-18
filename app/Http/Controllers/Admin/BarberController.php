@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Barber;
 use App\Http\Requests\BarberRequest;
+use Illuminate\Support\Facades\Storage;
 
 class BarberController extends Controller
 {
@@ -38,9 +39,11 @@ class BarberController extends Controller
      */
     public function store(BarberRequest $request)
     {
+        $image = $request->file('image')->store('public/barbers');
         Barber::create([
             'name' => $request->name,
             'description' => $request->description,
+            'image' => $image,
             'status' => $request->status,
         ]);
         return to_route('admin.barber.index')->with('success', 'Barber Created Successfuly');
@@ -82,11 +85,17 @@ class BarberController extends Controller
             'description' => 'required'
         ]);
 
+        $image = $barber->image;
+        if ($request->hasFile('image')) {
+            Storage::delete([$barber->image]);
+            $image = $request->file('image')->store('public/barbers');
+        }
 
         $barber->update(
             [
                 'name' => $request->name,
                 'description' => $request->description,
+                'image' => $image,
                 'status' => $request->status
             ]
         );
@@ -101,6 +110,7 @@ class BarberController extends Controller
      */
     public function destroy(Barber $barber)
     {
+        Storage::delete($barber->image);
 
         $barber->delete();
         return to_route('admin.barber.index')->with('danger', 'Barber Deleted');

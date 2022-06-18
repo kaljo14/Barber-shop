@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\BarberController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Frontend\BarberController as FrontendBarberController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 
@@ -21,6 +22,7 @@ use App\Http\Controllers\Frontend\ReservationController as FrontendReservationCo
 
 Route::get('/', [FrontendCategoryController::class, 'home']);
 Route::get('/catrgories', [FrontendCategoryController::class, 'index'])->name('categories.index');
+Route::get('/barbers', [FrontendBarberController::class, 'index'])->name('barbers.index');
 
 Route::get('/reservations/step-one', [FrontendReservationController::class, 'stepOne'])->name('reservations.step.one');
 Route::get('/reservations/step-two', [FrontendReservationController::class, 'stepTwo'])->name('reservations.step.two');

@@ -43,7 +43,7 @@
           <a class="text-transparent bg-clip-text bg-gradient-to-r from-white to-red-700 hover:text-red-600"
             href="/">Home</a>
           <a class="text-transparent bg-clip-text bg-gradient-to-r from-white to-red-700 hover:text-red-600"
-            href="#">About Us</a>
+            href="{{ route('barbers.index') }}">Barbers</a>
           <a class="text-transparent bg-clip-text bg-gradient-to-r from-white to-red-700 hover:text-red-600"
             href="{{ route('categories.index') }}">Services</a>
           <a class="text-transparent bg-clip-text bg-gradient-to-r from-white to-red-700 hover:text-red-600"

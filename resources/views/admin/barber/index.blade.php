@@ -22,6 +22,9 @@
                                 Description
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                Image
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                 Status
                                 </th>
                             </tr>
@@ -35,6 +38,9 @@
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900">
                             {{ $barber->description }}
+                            </td>
+                            <td class="px-6 py-4 font-medium text-gray-900">
+                            <img src="{{ Storage::url($barber->image) }}"class="2-16 h-16 rounded">
                             </td>
                             <td class="px-6 py-4 font-medium text-gray-900">
                             {{ $barber->status->name }}
