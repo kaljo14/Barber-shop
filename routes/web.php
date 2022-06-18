@@ -1,9 +1,12 @@
 <?php
+
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\BarberController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
+use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,19 +19,21 @@ use App\Http\Controllers\Admin\CategoriesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontendCategoryController::class, 'home']);
+Route::get('/catrgories', [FrontendCategoryController::class, 'index'])->name('categories.index');
+
+Route::get('/reservations/step-one', [FrontendReservationController::class, 'stepOne'])->name('reservations.step.one');
+Route::get('/reservations/step-two', [FrontendReservationController::class, 'stepTwo'])->name('reservations.step.two');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::middleware(['auth','admin'])->name('admin.')->prefix('admin')->group(function(){
-    Route::get('/',[AdminController::class, 'index'])->name('index');
-    Route::resource('/categories',CategoriesController::class);
-    Route::resource('/barber',BarberController::class);
-    Route::resource('/reservation',ReservationController::class);
+Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::resource('/categories', CategoriesController::class);
+    Route::resource('/barber', BarberController::class);
+    Route::resource('/reservation', ReservationController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

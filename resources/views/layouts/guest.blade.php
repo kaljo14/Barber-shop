@@ -21,7 +21,7 @@
       <nav class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center">
         <div class="flex items-center justify-between">
           <a class="text-2xl font-bold font-['Georgia'] text-transparent bg-clip-text bg-gradient-to-r from-white to-red-700 md:text-2xl hover:text-red-600"
-            href="#">
+            href="/">
             Barber Shop
           </a>
           <!-- Mobile menu button -->
@@ -41,13 +41,13 @@
         <div :class="isOpen ? 'flex' : 'hidden'"
           class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0">
           <a class="text-transparent bg-clip-text bg-gradient-to-r from-white to-red-700 hover:text-red-600"
-            href="#">Home</a>
+            href="/">Home</a>
           <a class="text-transparent bg-clip-text bg-gradient-to-r from-white to-red-700 hover:text-red-600"
             href="#">About Us</a>
           <a class="text-transparent bg-clip-text bg-gradient-to-r from-white to-red-700 hover:text-red-600"
-            href="#">Services</a>
+            href="{{ route('categories.index') }}">Services</a>
           <a class="text-transparent bg-clip-text bg-gradient-to-r from-white to-red-700 hover:text-red-600"
-            href="#">Gallery</a>
+            href="{{ route('reservations.step.one') }}">Make a Reservation</a>
           
         </div>
       </nav>
