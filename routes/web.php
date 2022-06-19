@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BarberController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Frontend\BarberController as FrontendBarberController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
+use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 
 /*
@@ -20,12 +21,15 @@ use App\Http\Controllers\Frontend\ReservationController as FrontendReservationCo
 |
 */
 
-Route::get('/', [FrontendCategoryController::class, 'home']);
+Route::get('/', [PagesController::class, 'home']);
 Route::get('/catrgories', [FrontendCategoryController::class, 'index'])->name('categories.index');
 Route::get('/barbers', [FrontendBarberController::class, 'index'])->name('barbers.index');
 
 Route::get('/reservations/step-one', [FrontendReservationController::class, 'stepOne'])->name('reservations.step.one');
+Route::post('/reservations/sstep-one', [FrontendReservationController::class, 'storeStepOne'])->name('reservations.store.step.one');
 Route::get('/reservations/step-two', [FrontendReservationController::class, 'stepTwo'])->name('reservations.step.two');
+Route::post('/reservations/step-two', [FrontendReservationController::class, 'storeStepTwo'])->name('reservations.store.step.two');
+Route::get('/thankyou', [PagesController::class, 'thankyou'])->name('thankyou');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
