@@ -74,9 +74,9 @@
                                     </label>
                                     <div class="mt-1">
                                         <input type="datetime-local" id="reser_date" name="reser_date"
-                                            min="{{ $min_date->format('Y-m-d\TH:i:s') }}"
-                                            max="{{ $max_date->format('Y-m-d\TH:i:s') }}"
-                                            value="{{ $reservation ? $reservation->reser_date->format('Y-m-d\TH:i:s') : '' }}"
+                                            min="{{ $min_date->format('Y-m-d\TH') }}"
+                                            max="{{ $max_date->format('Y-m-d\TH') }}"
+                                            value="{{ $reservation ? $reservation->reser_date->format('Y-m-d\TH') : '' }}"
                                             
                                             class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                                     </div>

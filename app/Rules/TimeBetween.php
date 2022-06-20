@@ -30,7 +30,7 @@ class TimeBetween implements Rule
         $barberTime = Carbon::createFromTime($barberDate->hour, $barberDate->minute, $barberDate->second);
         $firstTime = Carbon::createFromTimeString('10:00:00');
         $secondTime = Carbon::createFromTimeString('19:00:00');
-        return $barberDate->between($firstTime, $secondTime) ? true : false;
+        return $barberTime->between($firstTime, $secondTime) ? true : false;
     }
 
     /**

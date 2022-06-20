@@ -29,7 +29,9 @@
                                         <option value="{{ $emp->id }}" >{{ $emp->name }}</option>
                                     @endforeach
                                 </select>
-                                
+                                 @error('barber_id')
+                                        <div class="text-sm text-red-400">{{ $message }}</div>
+                                    @enderror
                                 
                                 
                                 <div class="mt-6  flex justify-between">
