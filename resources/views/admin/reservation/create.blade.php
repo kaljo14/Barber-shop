@@ -55,7 +55,10 @@
                         <div class="sm:col-snap-6">
                             <label for="reser_date" class="block text-sm font-midium text-gray-600">Reservation Date</label>
                             <div class="mt-1">
-                                <input type="datetime-local" name="reser_date" id="reser_date" class="block w-full focus:ring-indigo-400 @error ('reser_date') border-red-500 @enderror">
+                                <input type="datetime-local" name="reser_date" step="3600"
+                                min="{{ $min_date->format('Y-m-d\TH') }}"
+                                max="{{ $max_date->format('Y-m-d\TH') }}"
+                                id="reser_date" class="block w-full focus:ring-indigo-400 @error ('reser_date') border-red-500 @enderror">
                             </div>
                             @error('reser_date')
                             <div class="test-sm text-red-500">{{ $message }}</div>
@@ -93,7 +96,7 @@
                                @foreach ($barber as $emp)
                                    <p>{{ $emp->name }} has booked hours :</p>
                                    @foreach ($request_status as $status )
-                                       <p>{{ $status->reser_date }}</p>
+                                       <p>{{ $emp->reser_date }}</p>
                                    @endforeach
                                @endforeach
                                <p>so plees check them before booking</p>

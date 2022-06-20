@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\BarberController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\PassedReservationsController;
 use App\Http\Controllers\Frontend\BarberController as FrontendBarberController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\PagesController;
@@ -40,6 +41,7 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/categories', CategoriesController::class);
     Route::resource('/barber', BarberController::class);
     Route::resource('/reservation', ReservationController::class);
+    Route::resource('/passedreservation', PassedReservationsController::class);
 });
 
 require __DIR__ . '/auth.php';

@@ -38,6 +38,6 @@ class DateBetween implements Rule
      */
     public function message()
     {
-        return 'Please enter a valid date not more than a month from now .';
+        return 'Please make sure the date you have entered is not a pased and not more than a month from now .';
     }
 }

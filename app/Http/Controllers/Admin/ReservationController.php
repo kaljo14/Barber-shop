@@ -21,8 +21,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        $min_date = Carbon::now();
         $barber = Barber::all();
-        $reservation = Reservation::all();
+        $reservation = Reservation::whereRaw('reser_date >= ? ', [$min_date])->get();
         return view('admin.reservation.index', compact('reservation', 'barber'));
     }
 
@@ -36,7 +37,9 @@ class ReservationController extends Controller
 
         $barber = Barber::where('status', BarberStatus::Avaliable)->get();
         $request_status = Reservation::where('barber_id', 1)->get('reser_date');
-        return view('admin.reservation.create', compact('barber', 'request_status'));
+        $min_date = Carbon::today();
+        $max_date = Carbon::now()->addMonth();
+        return view('admin.reservation.create', compact('barber', 'request_status', 'min_date', 'max_date'));
     }
 
     /**
@@ -53,6 +56,7 @@ class ReservationController extends Controller
         $request_status = Reservation::where('barber_id', $request->barber_id)->get('reser_date');
         //$r_status = $request_status->toArray();
         //dd($request_status);
+
         foreach ($barber->reservation as $res) {
             if ($res->reser_date->format('Y-m-d H') == $request_date->format('Y-m-d H')) {
 
@@ -69,12 +73,12 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return 'hehe';
     }
 
     /**
@@ -86,7 +90,9 @@ class ReservationController extends Controller
     public function edit(Reservation $reservation)
     {
         $barber = Barber::all();
-        return view('admin.reservation.edit', compact('reservation', 'barber'));
+        $min_date = Carbon::today();
+        $max_date = Carbon::now()->addMonth();
+        return view('admin.reservation.edit', compact('reservation', 'barber', 'min_date', 'max_date'));
     }
 
     /**

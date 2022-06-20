@@ -73,7 +73,7 @@
                                         Date
                                     </label>
                                     <div class="mt-1">
-                                        <input type="datetime-local" id="reser_date" name="reser_date"
+                                        <input type="datetime-local" step="3600" id="reser_date"  name="reser_date"
                                             min="{{ $min_date->format('Y-m-d\TH') }}"
                                             max="{{ $max_date->format('Y-m-d\TH') }}"
                                             value="{{ $reservation ? $reservation->reser_date->format('Y-m-d\TH') : '' }}"

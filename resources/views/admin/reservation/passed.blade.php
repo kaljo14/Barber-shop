@@ -10,11 +10,11 @@
              <div class="flex m-5 p-2 justify-end">
 
                  <div class=" flex-none">
-                     <a href="{{ route('admin.passedreservation.index')}}" class="  px-4 py-2 bg-blue-400 hover:bg-blue-600 rounded-lg text-white ">Show Passed Reservation</a>
+                     <a href="{{ route('admin.reservation.index')}}" class="  px-4 py-2 bg-blue-400 hover:bg-blue-600 rounded-lg text-white ">Show Curent Reservation</a>
                     
                    
 
-                        <a href="{{ route('admin.reservation.create') }}" class="px-4 py-2 bg-blue-400 hover:bg-blue-600 rounded-lg text-white ">New Reservation</a>
+                        <a href="{{ route('admin.reservation.create') }}" class="px-4 py-2 bg-blue-400 hover:bg-blue-600 rounded-lg text-white "> Create New Reservation</a>
                     </div>
              </div>
            
@@ -74,6 +74,9 @@
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                             {{ $res->barber->name}} 
+                            </td>
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
+                            {{ $res->barber->id}} 
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex space-x-2">

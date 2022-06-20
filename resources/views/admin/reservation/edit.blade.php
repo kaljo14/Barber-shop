@@ -56,7 +56,11 @@
                          <div class="sm:col-snap-6">
                             <label for="reser_date" class="block text-sm font-midium text-gray-600">Reservation Date</label>
                             <div class="mt-1">
-                                <input type="datetime-local" name="reser_date" id="reser_date" value="{{ $reservation->reser_date->format('Y-m-d\TH:i:s')}}" class="block w-full focus:ring-indigo-400 ">
+                                <input type="datetime-local" name="reser_date"
+                                step="3600" 
+                                min="{{ $min_date->format('Y-m-d\TH') }}"
+                                max="{{ $max_date->format('Y-m-d\TH') }}"
+                                id="reser_date" value="{{ $reservation->reser_date->format('Y-m-d\TH:i:s')}}" class="block w-full focus:ring-indigo-400 ">
                             </div>
                             @error('reser_date')
                             <div class="test-sm text-red-500">{{ $message }}</div>
