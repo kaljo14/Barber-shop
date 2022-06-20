@@ -24,8 +24,9 @@ class ReservationController extends Controller
     {
         $min_date = Carbon::now();
         $barber = Barber::all();
+        $category = Category::all();
         $reservation = Reservation::whereRaw('reser_date >= ? ', [$min_date])->get();
-        return view('admin.reservation.index', compact('reservation', 'barber'));
+        return view('admin.reservation.index', compact('reservation', 'barber', 'category'));
     }
 
     /**
@@ -52,9 +53,12 @@ class ReservationController extends Controller
     public function store(ReservationStoreRequest $request)
     {
         $barber = Barber::findOrFail($request->barber_id);
+        $category = Category::findOrFail($request->cat_id);
         $request_date = Carbon::parse($request->reser_date);
         //$request_status = DB::table('reservations')->where('barber_id', $request->barber_id)->get('reser_date');
         $request_status = Reservation::where('barber_id', $request->barber_id)->get('reser_date');
+        $request_status = Reservation::where('cat_id', $request->cat_id)->get('reser_date');
+
         //$r_status = $request_status->toArray();
         //dd($request_status);
 
@@ -65,6 +69,14 @@ class ReservationController extends Controller
                     ->with('warning', 'This barber is not avialable at the hours: Please select a difrent barber.');
             }
         };
+        foreach ($category->reservation as $res) {
+            if ($res->reser_date->format('Y-m-d H') == $request_date->format('Y-m-d H')) {
+
+                return back()
+                    ->with('warning', 'This barber is not avialable at the hours: Please select a difrent barber.');
+            }
+        };
+
 
         Reservation::create($request->validated());
 
@@ -90,10 +102,11 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
+        $category = Category::all();
         $barber = Barber::all();
         $min_date = Carbon::today();
         $max_date = Carbon::now()->addMonth();
-        return view('admin.reservation.edit', compact('reservation', 'barber', 'min_date', 'max_date'));
+        return view('admin.reservation.edit', compact('reservation', 'barber', 'min_date', 'max_date', 'category'));
     }
 
     /**

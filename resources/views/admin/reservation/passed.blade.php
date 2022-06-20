@@ -55,7 +55,7 @@
                             
                         
                        <tr class="bg-white border-b ">
-                            <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
+           8                 <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                             {{ $res->first_name }}
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
@@ -76,7 +76,7 @@
                             {{ $res->barber->name}} 
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $res->barber->id}} 
+                            {{ $res->cat_id}} 
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex space-x-2">

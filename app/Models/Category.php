@@ -9,4 +9,9 @@ class Category extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'image', 'description', 'price'];
+
+    public function reservation()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

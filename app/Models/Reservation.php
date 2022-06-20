@@ -18,10 +18,15 @@ class Reservation extends Model
         'cat_id'
     ];
     protected $dates = [
-        'reser_date'
+        'reser_date',
+
     ];
     public function barber()
     {
         return $this->belongsTo(Barber::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

@@ -78,6 +78,19 @@
                             <div class="test-sm text-red-500">{{ $message }}</div>
                             @enderror
                             </div>
+                             <div class="sm:col-span-6 pt-5">
+                            <label for="cat_id" class="block text-sm font-medium text-gray-700">Select Barber</label>
+                            <div class="mt-1">
+                                <select id="cat_id" name="cat_id" class="form-multiselect block w-full mt-1 @error ('cat_id') border-red-500 @enderror">
+                                    @foreach ($category as $cat)
+                                    
+                                        <option value="{{ $cat->name }}"  @selected($cat->name)>{{ $cat->name }}</option>
+                                    @endforeach
+                                </select>
+                              @error('cat_id')
+                            <div class="test-sm text-red-500">{{ $message }}</div>
+                            @enderror
+                            </div>
                       <div class="mt-2 p-2  ">
                         <button type="submit" class="px-3 py-1 bg-indigo-400 hover:bg-indigo-600 rounded-lg text-white">Update</button>
                         </div>

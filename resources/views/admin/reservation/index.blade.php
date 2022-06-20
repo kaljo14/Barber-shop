@@ -51,41 +51,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                         @foreach ($reservation as $res)
-                            
                         
+                         @foreach ($reservation as $reservation)
+                            
+                            
                        <tr class="bg-white border-b ">
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $res->first_name }}
+                            {{ $reservation->first_name }}
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $res->last_name }}
+                            {{ $reservation->last_name }}
                             </td>
 
                             <td  class="px-6 py-4 font-medium   text-gray-900  whitespace-nowrap">
-                            {{ $res->email }}
+                            {{ $reservation->email }}
                             </td>
 
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $res->phone_number}} 
+                            {{ $reservation->phone_number}} 
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $res->reser_date}} 
+                            {{ $reservation->reser_date}} 
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $res->barber->name}} 
+                            {{ $reservation->barber->name}} 
                             </td>
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $res->cat_id->name}} 
+                            {{ $reservation->cat_id}} 
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex space-x-2">
-                                    <a href="{{ route('admin.reservation.edit',$res->id) }}" 
+                                    <a href="{{ route('admin.reservation.edit',$reservation->id) }}" 
                                         class="px-4 py-2 bg-green-400 hover:bg-green-600 rounded-lg text-white">Edit</a>
                                     <form class="px-4 py-2 bg-red-400 hover:bg-red-600 rounded-lg text-white"
                                         method="POST" 
-                                        action="{{ route('admin.reservation.destroy',$res->id) }}"
+                                        action="{{ route('admin.reservation.destroy',$reservation->id) }}"
                                         onsubmit="return confirm('Do you want to delete this item ?')">
                                         @csrf
                                         @method('DELETE')
