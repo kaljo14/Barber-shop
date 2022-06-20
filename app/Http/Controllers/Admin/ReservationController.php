@@ -9,6 +9,7 @@ use App\Http\Requests\ReservationStoreRequest;
 use App\Models\Reservation;
 
 use App\Models\Barber;
+use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -34,12 +35,12 @@ class ReservationController extends Controller
      */
     public function create()
     {
-
+        $category = Category::all();
         $barber = Barber::where('status', BarberStatus::Avaliable)->get();
         $request_status = Reservation::where('barber_id', 1)->get('reser_date');
         $min_date = Carbon::today();
         $max_date = Carbon::now()->addMonth();
-        return view('admin.reservation.create', compact('barber', 'request_status', 'min_date', 'max_date'));
+        return view('admin.reservation.create', compact('barber', 'request_status', 'min_date', 'max_date', 'category'));
     }
 
     /**

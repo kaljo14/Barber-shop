@@ -75,6 +75,10 @@
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                             {{ $res->barber->name}} 
                             </td>
+                            </td>
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
+                            {{ $res->cat_id->name}} 
+                            </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex space-x-2">
                                     <a href="{{ route('admin.reservation.edit',$res->id) }}" 
