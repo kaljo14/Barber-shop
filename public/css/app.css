@@ -1173,10 +1173,6 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
-.bg-gray-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
-}
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -1297,9 +1293,6 @@ select {
 }
 .p-8 {
   padding: 2rem;
-}
-.p-5 {
-  padding: 1.25rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1905,14 +1898,6 @@ select {
     background-color: rgb(254 240 138 / var(--tw-bg-opacity));
   }
 
-<<<<<<< Updated upstream
-  .dark\:text-red-800 {
-=======
-  .dark\:bg-gray-800 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
-  }
-
   .dark\:text-red-800 {
     --tw-text-opacity: 1;
     color: rgb(153 27 27 / var(--tw-text-opacity));
@@ -1926,22 +1911,6 @@ select {
   .dark\:text-yellow-800 {
     --tw-text-opacity: 1;
     color: rgb(133 77 14 / var(--tw-text-opacity));
-  }
-
-  .dark\:text-gray-500 {
->>>>>>> Stashed changes
-    --tw-text-opacity: 1;
-    color: rgb(107 114 128 / var(--tw-text-opacity));
-  }
-
-  .dark\:text-white {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-  }
-
-  .dark\:text-gray-400 {
-    --tw-text-opacity: 1;
-    color: rgb(156 163 175 / var(--tw-text-opacity));
   }
 }
 @media (min-width: 640px) {
@@ -1972,27 +1941,12 @@ select {
     margin-left: 1.5rem;
   }
 
-<<<<<<< Updated upstream
-=======
-  .sm\:ml-0 {
-    margin-left: 0px;
-  }
-
-  .sm\:block {
-    display: block;
-  }
-
->>>>>>> Stashed changes
   .sm\:flex {
     display: flex;
   }
 
   .sm\:hidden {
     display: none;
-  }
-
-  .sm\:w-auto {
-    width: auto;
   }
 
   .sm\:w-auto {
@@ -2070,24 +2024,6 @@ select {
   .sm\:leading-none {
     line-height: 1;
   }
-
-  .sm\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-
-  .sm\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
-  }
-
-  .sm\:leading-5 {
-    line-height: 1.25rem;
-  }
-
-  .sm\:leading-none {
-    line-height: 1;
-  }
 }
 @media (min-width: 768px) {
 
@@ -2137,13 +2073,6 @@ select {
 
   .md\:max-w-3xl {
     max-width: 48rem;
-<<<<<<< Updated upstream
-=======
-  }
-
-  .md\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
->>>>>>> Stashed changes
   }
 
   .md\:flex-row {
@@ -2168,44 +2097,6 @@ select {
     --tw-space-x-reverse: 0;
     margin-right: calc(2.5rem * var(--tw-space-x-reverse));
     margin-left: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-<<<<<<< Updated upstream
-  .md\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  .md\:px-3 {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  .md\:px-32 {
-    padding-left: 8rem;
-    padding-right: 8rem;
-  }
-
-  .md\:pb-0 {
-    padding-bottom: 0px;
-  }
-
-  .md\:text-center {
-    text-align: center;
-=======
-  .md\:border-t-0 {
-    border-top-width: 0px;
->>>>>>> Stashed changes
-  }
-
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .md\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
   }
 
   .md\:px-0 {

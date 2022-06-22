@@ -10,6 +10,8 @@ use App\Http\Controllers\Frontend\BarberController as FrontendBarberController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
+use App\Mail\ConfirmationMail;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,11 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/barber', BarberController::class);
     Route::resource('/reservation', ReservationController::class);
     Route::resource('/passedreservation', PassedReservationsController::class);
+});
+
+Route::get('/confirmation', function () {
+    Mail::to('info@gmail.com')->send(new ConfirmationMail());
+    return new ConfirmationMail();
 });
 
 require __DIR__ . '/auth.php';
