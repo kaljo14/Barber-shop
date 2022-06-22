@@ -10,6 +10,8 @@ use App\Models\Reservation;
 
 use App\Models\Barber;
 use App\Models\Category;
+use App\Rules\DateBetween;
+use App\Rules\TimeBetween;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -53,23 +55,15 @@ class ReservationController extends Controller
     public function store(ReservationStoreRequest $request)
     {
         $barber = Barber::findOrFail($request->barber_id);
-        $category = Category::findOrFail($request->cat_id);
+        $category = Category::findOrFail($request->category_id);
         $request_date = Carbon::parse($request->reser_date);
         //$request_status = DB::table('reservations')->where('barber_id', $request->barber_id)->get('reser_date');
         $request_status = Reservation::where('barber_id', $request->barber_id)->get('reser_date');
-        $request_status = Reservation::where('cat_id', $request->cat_id)->get('reser_date');
 
         //$r_status = $request_status->toArray();
         //dd($request_status);
 
         foreach ($barber->reservation as $res) {
-            if ($res->reser_date->format('Y-m-d H') == $request_date->format('Y-m-d H')) {
-
-                return back()
-                    ->with('warning', 'This barber is not avialable at the hours: Please select a difrent barber.');
-            }
-        };
-        foreach ($category->reservation as $res) {
             if ($res->reser_date->format('Y-m-d H') == $request_date->format('Y-m-d H')) {
 
                 return back()
@@ -91,7 +85,7 @@ class ReservationController extends Controller
      */
     public function show()
     {
-        return 'hehe';
+        //
     }
 
     /**
@@ -102,8 +96,8 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
+        $barber = Barber::where('status', BarberStatus::Avaliable)->get();
         $category = Category::all();
-        $barber = Barber::all();
         $min_date = Carbon::today();
         $max_date = Carbon::now()->addMonth();
         return view('admin.reservation.edit', compact('reservation', 'barber', 'min_date', 'max_date', 'category'));
@@ -118,7 +112,40 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
+        $request->validate([
 
+            'email' => ['required', 'email'],
+            'reser_date' => ['required', 'date', new DateBetween, new TimeBetween],
+            'phone_number' => ['required'],
+            'barber_id' => ['required'],
+            'category_id' => ['required']
+        ]);
+
+        $barber = Barber::findOrFail($request->barber_id);
+        $category = Category::findOrFail($request->category_id);
+
+
+        $request_date = Carbon::parse($request->res_date);
+        $reservations = $barber->reservation()->where('id', '!=', $reservation->barber_id)->get();
+        foreach ($reservations as $res) {
+            if ($res->reser_date->format('Y-m-d') == $request_date->format('Y-m-d')) {
+                return back()->with('warning', 'This barber is reserved for this date.');
+            }
+        }
+
+        $reservation->update(
+            [
+                'first_name' => $request->name,
+                'last_name' => $request->name,
+                'description' => $request->description,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'barber_id' => $request->barber_id,
+                'category_id' => $request->category_id,
+
+
+            ]
+        );
         return to_route('admin.reservation.index')->with('success', 'Reservation Updated Successfuly');
     }
 

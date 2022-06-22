@@ -78,7 +78,7 @@
                             </td>
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
-                            {{ $reservation->cat_id}} 
+                            {{ $reservation->category->name}} 
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex space-x-2">

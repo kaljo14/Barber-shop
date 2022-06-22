@@ -32,7 +32,7 @@ class ReservationStoreRequest extends FormRequest
             'reser_date' => ['required', 'date', new DateBetween, new TimeBetween],
             'phone_number' => ['required'],
             'barber_id' => ['required'],
-            'cat_id' => ['required']
+            'category_id' => ['required']
         ];
     }
 }

@@ -71,7 +71,7 @@
                             <div class="mt-1">
                                 <select id="barber_id" name="barber_id" class="form-multiselect block w-full mt-1">
                                     @foreach ($barber as $emp)
-                                        <option value="{{ $emp->name }}" @selected($emp->name)>{{ $emp->name }}</option>
+                                        <option value="{{ $emp->id }}" @selected($emp->id == $reservation->babrer_id)>{{ $emp->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('barber_id')
@@ -79,15 +79,15 @@
                             @enderror
                             </div>
                              <div class="sm:col-span-6 pt-5">
-                            <label for="cat_id" class="block text-sm font-medium text-gray-700">Select Barber</label>
+                            <label for="category_id" class="block text-sm font-medium text-gray-700">Select Barber</label>
                             <div class="mt-1">
-                                <select id="cat_id" name="cat_id" class="form-multiselect block w-full mt-1 @error ('cat_id') border-red-500 @enderror">
+                                <select id="category_id" name="category_id" class="form-multiselect block w-full mt-1 @error ('category_id') border-red-500 @enderror">
                                     @foreach ($category as $cat)
                                     
-                                        <option value="{{ $cat->name }}"  @selected($cat->name)>{{ $cat->name }}</option>
+                                        <option value="{{ $cat->id }}"  @selected($cat->id == $reservation->barber_id)>{{ $cat->name }}</option>
                                     @endforeach
                                 </select>
-                              @error('cat_id')
+                              @error('category_id')
                             <div class="test-sm text-red-500">{{ $message }}</div>
                             @enderror
                             </div>

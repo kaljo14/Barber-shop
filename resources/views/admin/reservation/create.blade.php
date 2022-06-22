@@ -78,15 +78,15 @@
                             @enderror
                             </div>
                         <div class="sm:col-span-6 pt-5">
-                            <label for="cat_id" class="block text-sm font-medium text-gray-700">Select Barber</label>
+                            <label for="category_id" class="block text-sm font-medium text-gray-700">Select Service</label>
                             <div class="mt-1">
-                                <select id="cat_id" name="cat_id" class="form-multiselect block w-full mt-1 @error ('cat_id') border-red-500 @enderror">
+                                <select id="category_id" name="category_id" class="form-multiselect block w-full mt-1 @error ('category_id') border-red-500 @enderror">
                                     @foreach ($category as $cat)
                                     
                                         <option value="{{ $cat->id }}" >{{ $cat->name }}</option>
                                     @endforeach
                                 </select>
-                              @error('cat_id')
+                              @error('category_id')
                             <div class="test-sm text-red-500">{{ $message }}</div>
                             @enderror
                             </div>
@@ -97,28 +97,7 @@
                     </form>
                     
                             
-                    </div>
-
-                    
-                        @if (isset($request_status))
-                            
-                        
-                        <div class="absolute top-0 right-0  bg-gray-500">
-                           <div class="m-2 p-2 " >
-                                
-                               @foreach ($barber as $emp)
-                                   <p>{{ $emp->name }} has booked hours :</p>
-                                   @foreach ($request_status as $status )
-                                       <p>{{ $emp->reser_date }}</p>
-                                   @endforeach
-                               @endforeach
-                               <p>so plees check them before booking</p>
-                           </div>
-
-                        </div>
-                        @endif
-                    
-                </div>
+                 
                 
             </div>
 

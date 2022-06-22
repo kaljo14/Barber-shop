@@ -24,10 +24,10 @@ class CategoryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-           'image' => ['required', 'image'],
-            'name'=>'required|unique:categories',
-            'price'=>'required|min:0|max:2000',
-            'description'=>'required'
+            'image' => ['required', 'image'],
+            'name' => 'required|unique:categories',
+            'price' => 'required|min:0|max:2000',
+            'description' => 'required'
         ];
     }
 }

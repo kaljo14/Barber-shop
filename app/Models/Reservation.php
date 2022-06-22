@@ -17,7 +17,7 @@ class Reservation extends Model
         'reser_date',
         'barber_id',
         'email',
-        'cat_id'
+        'category_id'
     ];
     protected $dates = [
         'reser_date',
