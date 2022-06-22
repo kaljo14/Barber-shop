@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Enums\BarberStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Barber;
+use App\Models\Category;
 use App\Models\Reservation;
 use App\Rules\DateBetween;
 use App\Rules\TimeBetween;
@@ -51,13 +52,15 @@ class ReservationController extends Controller
                 return $value->reser_date->format('Y-m-d:H') == $reservation->reser_date->format('Y-m-d:H');
         })->pluck('barber_id');
         $barber = Barber::where('status', BarberStatus::Avaliable)->whereNotIn('id', $free_barbers)->get();
-        return view('reservations.step-two', compact('reservation', 'barber'));
+        $category = Category::all();
+        return view('reservations.step-two', compact('reservation', 'barber', 'category'));
     }
 
     public function storeStepTwo(Request $request)
     {
         $validated = $request->validate([
-            'barber_id' => ['required']
+            'barber_id' => ['required'],
+            'category_id' => ['required']
         ]);
         $reservation = $request->session()->get('reservation');
 

@@ -23,16 +23,29 @@
                                     <label for="first_name" class="block text-sm font-medium text-gray-700"> Select a Barber
                                     </label>
                                     <div class="mt-1">
-                                <select id="barber_id" name="barber_id" class="form-multiselect block w-full mt-1 @error ('barber_id') border-red-500 @enderror">
+                                    <select id="barber_id" name="barber_id" class="form-multiselect block w-full mt-1 @error ('barber_id') border-red-500 @enderror">
                                     @foreach ($barber as $emp)
                                     
                                         <option value="{{ $emp->id }}" >{{ $emp->name }}</option>
                                     @endforeach
-                                </select>
+                                    </select>
                                  @error('barber_id')
                                         <div class="text-sm text-red-400">{{ $message }}</div>
                                     @enderror
                                 
+                                    <label for="first_name" class="block text-sm font-medium text-gray-700"> Select a Barber
+                                    </label>
+                                    <div class="mt-1">
+                                <select id="category_id" name="category_id" class="form-multiselect block w-full mt-1 @error ('category_id') border-red-500 @enderror">
+                                    @foreach ($category as $cat)
+                                    
+                                        <option value="{{ $cat->id }}" >{{ $cat->name }}</option>
+                                    @endforeach
+                                </select>
+                                 @error('category_id')
+                                        <div class="text-sm text-red-400">{{ $message }}</div>
+                                    @enderror
+                                </div>
                                 
                                 <div class="mt-6  flex justify-between">
                                     <a href="{{ route('reservations.step.one') }}" class="px-4 py-2 bg-blue-800 hover:bg-red-800 rounded-lg text-white">Back</a>
@@ -40,6 +53,7 @@
                                     <button type="submit"
                                         class="px-4 py-2 bg-blue-800 hover:bg-red-800 rounded-lg text-white">Make Reservation</button>
                                 </div>
+                            
                             </form>
                         </div>
                     </div>
