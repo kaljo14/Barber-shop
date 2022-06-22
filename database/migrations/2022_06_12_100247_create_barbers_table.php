@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->unsignedInteger('cat_id');
+        Schema::create('barbers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->text('description');
+            $table->string('image');
+            $table->string('status')->default('avaliable');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->dropColumn('cat_id');
-        });
+        Schema::dropIfExists('barbers');
     }
 };

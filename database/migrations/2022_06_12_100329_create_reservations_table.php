@@ -20,8 +20,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone_number');
             $table->dateTime('reser_date');
-            $table->unsignedInteger('barber_id');
-
+            $table->unsignedBigInteger('barber_id');
+            $table->foreign('barber_id')->references('id')->on('barbers')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
