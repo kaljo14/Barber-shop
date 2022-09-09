@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryControll
 use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 use App\Mail\ConfirmationMail;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Mail;
 
 /*
@@ -32,6 +33,12 @@ Route::get('/reservations/step-one', [FrontendReservationController::class, 'ste
 Route::post('/reservations/sstep-one', [FrontendReservationController::class, 'storeStepOne'])->name('reservations.store.step.one');
 Route::get('/reservations/step-two', [FrontendReservationController::class, 'stepTwo'])->name('reservations.step.two');
 Route::post('/reservations/step-two', [FrontendReservationController::class, 'storeStepTwo'])->name('reservations.store.step.two');
+Route::post('/thankyou', function (Reservation $reservation) {
+
+    Mail::to('example@gmail.com')->send(new ConfirmationMail());
+    return view('emails.email-conf');
+});
+
 Route::get('/thankyou', [PagesController::class, 'thankyou'])->name('thankyou');
 
 Route::get('/dashboard', function () {
@@ -46,9 +53,6 @@ Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(fun
     Route::resource('/passedreservation', PassedReservationsController::class);
 });
 
-Route::get('/confirmation', function () {
-    Mail::to('info@gmail.com')->send(new ConfirmationMail());
-    return new ConfirmationMail();
-});
+
 
 require __DIR__ . '/auth.php';

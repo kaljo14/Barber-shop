@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Enums\BarberStatus;
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmationMail;
 use App\Models\Barber;
 use App\Models\Category;
 use App\Models\Reservation;
@@ -11,6 +12,7 @@ use App\Rules\DateBetween;
 use App\Rules\TimeBetween;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -66,7 +68,18 @@ class ReservationController extends Controller
 
         $reservation->fill($validated);
         $reservation->save();
+
+        // Mail::send('emails.confirmation', ['reservation' => $reservation], function ($m) use ($reservation) {
+        //     $m->from('hello@app.com', 'Your Application');
+
+        //     $m->to($reservation->email, $reservation->first_name)->subject('Your Reservation!');
+        // });
+
+
+
+
+        Mail::to($reservation->email)->send(new ConfirmationMail($reservation));
         $request->session()->forget('reservation');
-        return to_route('thankyou');
+        return to_route('thankyou', compact('reservation'));
     }
 }

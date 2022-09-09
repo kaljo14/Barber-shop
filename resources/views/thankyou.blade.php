@@ -9,18 +9,20 @@
                     </div>
                     <div class="flex  justify-center p-6 sm:p-12 md:w-1/2">
                         <div class="w-full">
-                            <h3 class="mb-4 text-xl font-bold text-blue-800">Reservation Created</h3>
+                            <h3 class="mb-4 text-xl font-bold text-blue-800">Please Confirme The Reservation</h3>
 
                             
 
-                            <p class="uppercase mt-20">{{ $reservation->first_name }} {{ $reservation->last_name }}  </p>
-                            <p>{{ $reservation->email}}</p>
-                            <p>We will be waiting for you on {{  $reservation->reser_date->format('d-m-Y')  }} at {{ $reservation->reser_date->format('H:i ') }}</p>
-                           <div class="mt-400">
+                            <p class="uppercase mt-20">Dear, {{ $reservation->first_name }} {{ $reservation->last_name }}  </p>
+                            <p>     We will be waiting for you on {{  $reservation->reser_date->format('d-m-Y')  }} at {{ $reservation->reser_date->format('H:i ') }}</p>
+                            <p>Service: {{ $reservation->category->name}}</p>
+                            <p>Your Barber Is: {{ $reservation->barber->name }}</p>
+
                             
-                               <p class="mt-40 justify-end p-3 ">The address is : Lorem ipsum dolor sit amet consectetur adipisicing elit. ab! </p>
-                           </div>
-                        </div>
+                               <p class="py-2r">The address is :</p><p class="  underline"> Lorem ipsum dolor sit amet consectetur adipisicing elit. ab! </p>
+                        
+                       
+
                     </div>
                 </div>
             </div>
