@@ -17,7 +17,7 @@ class PassedReservationsController extends Controller
 
         $categories = Category::all();
         $barber = Barber::all();
-        $reservation = Reservation::whereRaw('reser_date <= ? ', [$min_date])->get();
+        $reservation = Reservation::whereRaw('reser_date <= ? ', [$min_date])->orderBy('reser_date', 'desc')->get();
 
         return view('admin.reservation.passed', compact('reservation', 'barber', 'categories'));
     }
