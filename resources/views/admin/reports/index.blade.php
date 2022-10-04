@@ -10,10 +10,10 @@
                     
 
                     <a
-                        href="{{ route('admin.reservation.create') }}"
+                        href="{{ route('admin.reports.create') }}"
                         class="px-4 py-2 bg-blue-400 hover:bg-blue-600 rounded-lg text-white"
                     >
-                        Back</a
+                        Refresh </a
                     >
                 </div>
             </div>
@@ -35,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($barber as $barber)
+                        @foreach ($reports as $report)
                         <tr class="bg-white border-b">
                            
                            
@@ -44,24 +44,24 @@
                                 scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                             >
-                                {{ $barber->name}}
+                                {{ $report->barber->name}}
                             </td>
                             <td
                                 scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                             >
-                                {{ $barber->id}}
+
                             </td>
                             <td
                                 scope="row"
                                 class="px-6 py-4 font-medium text-green-500 whitespace-nowrap"
                             >
-                                {{ $salary . ' BGN'}} 
+
                             </td>
                           
                             <td class="px-6 py-4 text-right">
                                 <div class="flex space-x-2">
-                                    
+
                                 </div>
                             </td>
                         </tr>

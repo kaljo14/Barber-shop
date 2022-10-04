@@ -19,8 +19,22 @@ class ReportsController extends Controller
      */
     public function index()
     {
+        $barber = Barber::all();
+
+        $reports = Reports::select('barber_id', 'salary')->get();
 
 
+
+        return view('admin.reports.index', compact('reports', 'barber'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $barber = Barber::all();
 
 
@@ -32,6 +46,7 @@ class ReportsController extends Controller
             foreach ($reservation as $res) {
                 $salary += $res->category->price;
             }
+
             Reports::create([
                 'barber_id' => $bar->id,
                 'month' => Carbon::now(),
@@ -39,30 +54,7 @@ class ReportsController extends Controller
             ]);
         }
 
-
-        return view('admin.reports.index', compact('reservation', 'barber', 'salary'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-
-        $barber = Barber::all();
-        foreach ($barber as $bar) {
-            $salary = 0;
-            $reservation = Reservation::where('barber_id', $bar->id)->get('category_id');
-            foreach ($reservation as $res) {
-                $salary += $res->category->price;
-            }
-        };
-
-
-        route('admin.repots.store');
+        return to_route('admin.reports.index');
     }
 
     /**
@@ -73,9 +65,6 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-        $barber = Barber::findOrFail($request->barber_id);
-        $salary = $request->salary;
-        Reports::create($request->validated());
     }
 
     /**
@@ -109,7 +98,25 @@ class ReportsController extends Controller
      */
     public function update(Request $request, Reports $reports)
     {
-        //
+        $barber = Barber::all();
+
+
+
+        //$categories = Category::select('id', 'price')->get();
+        foreach ($barber as $bar) {
+            $salary = 0;
+            $reservation = Reservation::where('barber_id', $bar->id)->get('category_id');
+            foreach ($reservation as $res) {
+                $salary += $res->category->price;
+            }
+
+            Reports::create([
+                'barber_id' => $bar->id,
+                'month' => Carbon::now(),
+                'salary' => $salary
+            ]);
+        }
+        to_route('admin.reports.index');
     }
 
     /**
